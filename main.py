@@ -102,4 +102,49 @@ def displayDashboard(userid):
     cursor.close()
     conn.close()
 
+def mainMenu(userID):
+
+    rounds = 0
+    max_rounds = 10
+
+    while True:
+
+        if rounds >= max_rounds:
+            print("\nGame finished! You reached the maximum 10 rounds.")
+            break
+
+        print("\nChoose an option")
+        print("1. Choose a route")
+        print("2. Invest in Greentech")
+        print("3. View Company status")
+        print("4. Exit")
+
+        choice = input("Enter your choice (1-4): ")
+
+        if choice not in ["1", "2", "3", "4"]:
+            print("Invalid input. Please enter a number between 1 and 4.")
+            continue
+
+        if choice == "1":
+
+            rounds += 1
+            print("\n" + "="*50)
+            print("ROUND", rounds)
+            print("="*50)
+
+            print("Print the routes")
+
+            print("\nEnd of Round", rounds)
+            print("-"*50)
+
+        elif choice == "2":
+            print("Print the 2 option")
+
+        elif choice == "3":
+            print("Print the 3 option")
+
+        elif choice == "4":
+            print("\nReturning to instructions page...\n")
+            displayIntro()
+
 
