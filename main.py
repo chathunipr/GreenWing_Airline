@@ -1,3 +1,4 @@
+from config import get_db_connection
 def displayIntro():
     print("="*60)
     print("🌿 WELCOME TO GREENWING AIRLINES: ECO-TYCOON 🌿")
@@ -76,4 +77,29 @@ def displayIntro():
 
     input("\nPress 1 to start the game: ")
     print("Initializing... Good luck CEO! ✈🌍")
+
+def displayDashboard(userid):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT name, home_airport, current_budget, reputation, total_co2
+        FROM users
+        WHERE userid = %s
+    """, (userid,))
+    result = cursor.fetchone()
+
+    if result:
+        name, homeAirport, budget, reputation, total_co2 = result
+        print("🌿 COMPANY DASHBOARD 🌿")
+        print("=" * 60)
+        print(f"CEO Name       : {name}")
+        print(f"Home Airport   : {homeAirport}")
+        print(f"Budget         : ${budget}")
+        print(f"Reputation     : {reputation}%")
+        print(f"Total CO2      : {total_co2} tons")
+
+    cursor.close()
+    conn.close()
+
 
