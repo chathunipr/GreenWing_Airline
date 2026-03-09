@@ -11,3 +11,25 @@ def getUserName():
         else:
             print(f"Welcome, {name}! Let's set up your airline.")
             return name
+
+
+def chooseHomeAirport():
+    airports = [
+        "1. Bandaranaike International Airport (CMB), Sri Lanka",
+        "2. Dubai International Airport (DXB), UAE",
+        "3. Heathrow Airport (LHR), UK",
+        "4. Helsinki Airport (HEL), Finland",
+        "5. Changi Airport (SIN), Singapore"
+    ]
+    print("\nPlease choose your home from the list below: ")
+    for airport in airports:
+        print(airport)
+
+    while True:
+        choice = input("\nEnter the number of your home airport (1-5): ")
+        if choice in ["1", "2", "3", "4", "5"]:
+            chosenAirport = airports[int(choice) - 1]  # ✅ fixed index
+            print(f"\nGreat! Your home airport is set to: {chosenAirport}")
+            return chosenAirport
+        else:
+            print("Invalid input. Please enter a number between 1-5.")
