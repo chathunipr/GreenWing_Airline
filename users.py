@@ -33,3 +33,26 @@ def chooseHomeAirport():
             return chosenAirport
         else:
             print("Invalid input. Please enter a number between 1-5.")
+
+
+def createUser(name, home_airport):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    sql = """
+    INSERT INTO users (name, home_airport, current_budget, reputation, total_co2, total_profit)
+    VALUES (%s, %s, %s, %s, %s, %s)
+    """
+
+    cursor.execute(sql, (name, home_airport, 500000, 75, 0, 0))
+    conn.commit()
+
+    user_id = cursor.lastrowid
+    print("User created successfully!")
+
+    cursor.close()
+    conn.close()
+    return user_id
+
+
+
