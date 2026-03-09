@@ -160,8 +160,8 @@ INSERT INTO `routes` VALUES
 ALTER TABLE routes
 MODIFY airport_fee FLOAT DEFAULT 0;
 
-ALTER TABLE routes ADD COLUMN ticket_price DECIMAL(10,2);
-select * FROM routes;
+--ALTER TABLE routes ADD COLUMN ticket_price DECIMAL(10,2);
+--select * FROM routes;
 
 ALTER TABLE investments
 MODIFY investmentid VARCHAR(20);
