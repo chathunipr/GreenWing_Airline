@@ -15,3 +15,17 @@ def checkGameStatus(userID, rounds):
 
     cur.close()
     conn.close()
+
+    if co2 > 200 or reputation < 20:
+        return "lose"
+
+    if profit >= 2000000 and co2 <= 200 and reputation >= 20 and rounds >= 5:
+        return "win"
+
+    if rounds >= 10:
+        if profit >= 2000000 and co2 <= 200 and reputation >= 20:
+            return "win"
+        else:
+            return "lose"
+
+    return "continue"
