@@ -28,3 +28,16 @@ def processFlight(userID, routeid, profit, co2_per_flight):
     # reputation loss from pollution
     reputation_loss = co2_per_flight * 0.25
     new_reputation = reputation - reputation_loss
+
+    if new_reputation < 0:
+        new_reputation = 0
+
+        # update users table
+    cur.execute("""
+                UPDATE users
+                SET current_budget=%s,
+                    total_profit=%s,
+                    total_co2=%s,
+                    reputation=%s
+                WHERE userid = %s
+                """, (new_budget, new_total_profit, new_total_co2, new_reputation, userID))
