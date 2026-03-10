@@ -13,6 +13,8 @@ CREATE TABLE users (
     reputation INT DEFAULT 75                       -- user's reputation score
 );
 
+ALTER TABLE users
+MODIFY current_budget DECIMAL(12,2) DEFAULT 250000.00;
 
 CREATE TABLE routes (
     routeid CHAR(4) PRIMARY KEY,                  -- unique ID for each route
