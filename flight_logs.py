@@ -45,3 +45,17 @@ def processFlight(userID, routeid, profit, co2_per_flight):
     # create flight id
     timestamp = datetime.now().strftime("%H%M%S")
     flight_id = str(userID) + "" + str(routeid) + "" + timestamp
+
+# save flight record
+    cur.execute("""
+                INSERT INTO flight_logs
+                    (flight_id, userid, routeid, profit_generated, co2_produced)
+                VALUES (%s, %s, %s, %s, %s)
+                """, (flight_id, userID, routeid, profit, co2_per_flight))
+
+    conn.commit()
+
+    cur.close()
+    conn.close()
+
+    return profit, new_budget, new_total_co2, new_reputation
