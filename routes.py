@@ -29,3 +29,24 @@ def chooseRoute(userID):
             print(f"{i}. {name}, {location} ({round(distance)} km)")
 
         print("0 - Return to main menu")
+
+        while True:
+            choice = input("Enter your preferred route (1-5) or 0 to return: ")
+
+            if not choice.isdigit():
+                print("Invalid input. Please enter a number.")
+                continue
+
+            choice = int(choice)
+
+            if choice == 0:
+                cur.close()
+                conn.close()
+                return
+
+            if 1 <= choice <= 5:
+                i = choice - 1
+                selected = routes[i]
+                break
+            else:
+                print("Invalid input. Please choose between 1 and 5.")
