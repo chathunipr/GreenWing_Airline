@@ -44,7 +44,7 @@ def createUser(name, home_airport):
     VALUES (%s, %s, %s, %s, %s, %s)
     """
 
-    cursor.execute(sql, (name, home_airport, 500000, 75, 0, 0))
+    cursor.execute(sql, (name, home_airport, 250000, 75, 0, 0))
     conn.commit()
 
     user_id = cursor.lastrowid
