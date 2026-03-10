@@ -41,3 +41,7 @@ def processFlight(userID, routeid, profit, co2_per_flight):
                     reputation=%s
                 WHERE userid = %s
                 """, (new_budget, new_total_profit, new_total_co2, new_reputation, userID))
+
+    # create flight id
+    timestamp = datetime.now().strftime("%H%M%S")
+    flight_id = str(userID) + "" + str(routeid) + "" + timestamp

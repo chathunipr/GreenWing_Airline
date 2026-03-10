@@ -1,4 +1,5 @@
 from config import get_db_connection
+from users import getUserName, chooseHomeAirport, createUser
 def displayIntro():
     print("="*60)
     print("🌿 WELCOME TO GREENWING AIRLINES: ECO-TYCOON 🌿")
@@ -147,4 +148,14 @@ def mainMenu(userID):
             print("\nReturning to instructions page...\n")
             displayIntro()
 
+def main():
+    displayIntro()
+    userName = getUserName()
+    homeAirport = chooseHomeAirport()
+    userID = createUser(userName, homeAirport)
 
+    displayDashboard(userID)
+    mainMenu(userID)
+
+if __name__ == "__main__":
+    main()
