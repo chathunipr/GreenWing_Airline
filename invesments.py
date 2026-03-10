@@ -50,3 +50,43 @@ def investGreenTech(userID):
     # prevent CO2 going below zero
     # if new_total_co2 < 0:
     #     new_total_co2 = 0
+    # count previous investments
+    cursor.execute(
+        "SELECT COUNT(*) FROM investments WHERE userid = %s",
+        (userID,)
+    )
+
+    count = cursor.fetchone()[0]
+
+    # create investment id
+    investment_id = str(userID) + "INV" + str(count + 1)
+
+    # insert investment record
+    cursor.execute("""
+                   INSERT INTO investments
+                   (investmentid, userid, amount, co2_reduced, reputation_increased, investment_time)
+                   VALUES (%s, %s, %s, %s, %s, NOW())
+                   """, (investment_id, userID, amount, co2_reduced, reputation_increased))
+
+    # update user values
+    cursor.execute("""
+                   UPDATE users
+                   SET current_budget = %s,
+                       total_co2      = %s,
+                       reputation     = %s
+                   WHERE userid = %s
+                   """, (new_budget, new_total_co2, new_reputation, userID))
+
+    conn.commit()
+
+    print("\nInvestment Successful!")
+    print("-" * 40)
+    print("Amount Invested:", amount)
+    print("Updated Budget:", round(new_budget, 2))
+    print("CO2 Reduced:", round(co2_reduced, 2))
+    print("Reputation increased:", round(reputation_increased, 2))
+    print("Updated Total CO2:", round(new_total_co2, 2))
+    print("Updated Reputation:", round(new_reputation, 2), "%")
+
+    cursor.close()
+    conn.close()
