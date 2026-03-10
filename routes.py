@@ -18,3 +18,14 @@ def chooseRoute(userID):
             LIMIT 5
         """)
         routes = cur.fetchall()
+
+        for i, route in enumerate(routes, start=1):
+            routeid = route[0]
+            name = route[1]
+            location = route[2]
+            longitude_deg = float(route[3])
+            latitude_deg = float(route[4])
+            distance = abs(latitude_deg * longitude_deg)
+            print(f"{i}. {name}, {location} ({round(distance)} km)")
+
+        print("0 - Return to main menu")
