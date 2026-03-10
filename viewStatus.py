@@ -18,3 +18,25 @@ def viewCompanyDetails(userID):
     reputation = float(result[3] or 0)
     total_co2 = float(result[4] or 0)
     budget = float(result[5] or 0)
+
+    print("\n")
+    print("=" * 50)
+    print("     GREENWING AIRLINES - COMPANY STATUS")
+    print("=" * 50)
+
+    print("CEO:", name)
+    print("Home Airport:", home_airport)
+
+    print("-" * 50)
+
+    print("Current Budget: $", round(budget, 2))
+    print("Total Profit: $", round(total_profit, 2))
+    print("Reputation:", round(reputation, 2), "%")
+    print("Total CO2 Emission:", round(total_co2, 2))
+
+    print("=" * 50)
+
+
+
+
+
