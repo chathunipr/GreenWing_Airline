@@ -50,3 +50,13 @@ def chooseRoute(userID):
                 break
             else:
                 print("Invalid input. Please choose between 1 and 5.")
+
+                # Extract route details
+        routeid, name, location, longitude_deg, latitude_deg, airport_fee, fuel_cost, passengers, co2_per_flight, ticket_price = selected
+        longitude_deg = float(longitude_deg)
+        latitude_deg = float(latitude_deg)
+        airport_fee = float(airport_fee or 0)
+        fuel_cost = float(fuel_cost or 0)
+        passengers = int(passengers or 0)
+        co2_per_flight = float(co2_per_flight or 0)
+        ticket_price = float(ticket_price or 0)
