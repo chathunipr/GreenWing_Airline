@@ -28,7 +28,7 @@ def chooseHomeAirport():
     while True:
         choice = input("\nEnter the number of your home airport (1-5): ")
         if choice in ["1", "2", "3", "4", "5"]:
-            chosenAirport = airports[int(choice) - 1]  # ✅ fixed index
+            chosenAirport = airports[int(choice) - 1]  #fixed index
             print(f"\nGreat! Your home airport is set to: {chosenAirport}")
             return chosenAirport
         else:

@@ -23,14 +23,15 @@ def chooseRoute(userID, rounds):
             LIMIT 5
         """)
         routes = cur.fetchall()
+        #query results are stored here
 
-        for i, route in enumerate(routes, start=1):
+        for i, route in enumerate(routes, start=1): #giving a index number to each route and extract them as a tuple
             routeid = route[0]
             name = route[1]
             location = route[2]
             longitude_deg = float(route[3])
             latitude_deg = float(route[4])
-            distance = abs(latitude_deg * longitude_deg)
+            distance = abs(latitude_deg * longitude_deg) #absolute value
             print(f"{i}. {name}, {location} ({round(distance)} km)")
 
         print("0 - Return to main menu")
@@ -56,7 +57,7 @@ def chooseRoute(userID, rounds):
             else:
                 print("Invalid input. Please choose between 1 and 5.")
 
-                # Extract route details
+                # Extract route and unpack the tuple into variables
         routeid, name, location, longitude_deg, latitude_deg, airport_fee, fuel_cost, passengers, co2_per_flight, ticket_price = selected
         longitude_deg = float(longitude_deg)
         latitude_deg = float(latitude_deg)
