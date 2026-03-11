@@ -65,7 +65,7 @@ def chooseRoute(userID):
 
         # fixed rates
         c02Rate = 0.05
-        fuelRate = 8
+        fuelRate = 5
 
         # calculate fuel and CO2
         fuel_cost = distance * fuelRate
