@@ -93,3 +93,23 @@ def chooseRoute(userID):
         print("Estimated CO2 Emission:", round(co2_per_flight, 2))
         print("Estimated Revenue:", round(revenue, 2))
         print("Estimated Profit:", round(profit, 2))
+
+        cancel_flight = False
+
+        while True:
+            confirm = input("Confirm this flight? (y/n): ").lower()
+
+            if confirm == "y":
+                break
+            elif confirm == "n":
+                print("Flight cancelled. Returning to route selection...\n")
+                cancel_flight = True
+                break
+            else:
+                print("Invalid input. Please enter y or n.")
+
+        if cancel_flight:
+            cur.close()
+            conn.close()
+            continue
+
