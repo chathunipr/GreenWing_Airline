@@ -1,12 +1,17 @@
+# import the database connection function from config file
 from config import get_db_connection
+
+# import datetime to generate a unique flight id using time
 from datetime import datetime
 
+# function to process a completed flight
+# parameters: userID, routeid, profit earned from flight, and CO2 produced
 def processFlight(userID, routeid, profit, co2_per_flight):
 
     conn = get_db_connection()
     cur = conn.cursor()
 
-    # get latest user values
+    # get the latest financial and environmental values of the user
     cur.execute("""
         SELECT current_budget, total_profit, total_co2, reputation
         FROM users
