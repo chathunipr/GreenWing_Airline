@@ -76,7 +76,9 @@ def chooseRoute(userID):
         profit = revenue - fuel_cost - airport_fee
 
         # fetch home airport
-        cur.execute("SELECT home_airport FROM users WHERE userid = %s", (userID,))
+        cur.execute("SELECT home_airport "
+                    "FROM users "
+                    "WHERE userid = %s", (userID,))
         home_airport = cur.fetchone()[0]
 
         print("\nRoute Details")
@@ -119,5 +121,14 @@ def chooseRoute(userID):
             profit,
             co2_per_flight
         )
+        print("\nYeey! Your flight completed successfully!")
+        print("-" * 40)
+        print("Total Budget: $", round(new_budget, 2))
+        print("Total CO2:", round(new_total_co2, 2))
+        print("Reputation:", round(new_reputation, 2), "%")
+
+        cur.close()
+        conn.close()
+        break
 
 
