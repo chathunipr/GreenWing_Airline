@@ -39,17 +39,15 @@ def investGreenTech(userID):
             print("Invalid input. Please enter numbers only.")
 
         # calculate benefits
-    co2_reduced = amount / 10000
-    reputation_increased = amount / 20000
+    co2_reduced = amount / 1000
+    reputation_increased = amount / 2000
 
     # update values
     new_budget = current_budget - amount
     new_total_co2 = max(0, total_co2 - co2_reduced)
     new_reputation = reputation + reputation_increased
 
-    # prevent CO2 going below zero
-    # if new_total_co2 < 0:
-    #     new_total_co2 = 0
+
     # count previous investments
     cursor.execute(
         "SELECT COUNT(*) FROM investments WHERE userid = %s",
