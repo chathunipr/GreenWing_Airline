@@ -37,6 +37,19 @@ def viewCompanyDetails(userID):
     print("=" * 50)
 
 
+# validation loop
+    while True:
+        choice = input("\nPress 0 to return to Main Menu: ")
+
+        if choice == "0":
+            break
+        else:
+            print("Invalid input. Please press 0 to return.")
+
+    cursor.close()
+    conn.close()
+
+
 
 
 
