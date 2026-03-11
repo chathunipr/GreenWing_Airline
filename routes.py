@@ -2,7 +2,12 @@ from config import get_db_connection
 from datetime import datetime
 from flight_logs import processFlight
 
-def chooseRoute(userID):
+def chooseRoute(userID, rounds):
+
+    print("\n" + "=" * 50)
+    print("ROUND", rounds)
+    print("=" * 50)
+
     while True:
         conn = get_db_connection()
         cur = conn.cursor()
@@ -126,6 +131,9 @@ def chooseRoute(userID):
         print("Total Budget: $", round(new_budget, 2))
         print("Total CO2:", round(new_total_co2, 2))
         print("Reputation:", round(new_reputation, 2), "%")
+
+        print("\nEnd of Round", rounds)
+        print("-" * 50)
 
         cur.close()
         conn.close()

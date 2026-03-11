@@ -25,7 +25,7 @@ def displayIntro():
 
     print("\nGAME RULES & OBJECTIVES")
     print("-"*60)
-    print("1. Starting Budget      : $500,000")
+    print("1. Starting Budget      : $250,000")
     print("2. Starting Reputation  : 75%")
     print("3. Starting CO2 Emission: 0 tons")
     print("4. The game is played in ROUNDS.")
@@ -46,7 +46,7 @@ def displayIntro():
     print("\nHOW TO WIN")
     print("-"*60)
     print("You must achieve ALL of the following before the game ends:")
-    print("  💰 Total Profit : Earn at least $2,000,000")
+    print("  💰 Total Profit : Earn at least $500,000")
     print("  ⭐ Reputation   : Keep reputation at 20% or higher")
     print("  🌍 Total CO2    : Maintain 200 tons or less")
 
@@ -112,14 +112,8 @@ def displayDashboard(userid):
 def mainMenu(userID):
 
     rounds = 0
-    max_rounds = 10
 
     while True:
-
-        if rounds >= max_rounds:
-            print("\nGame finished! You reached the maximum 10 rounds.")
-            break
-
         print("\nChoose an option")
         print("1. Choose a route")
         print("2. Invest in Greentech")
@@ -135,14 +129,8 @@ def mainMenu(userID):
         if choice == "1":
 
             rounds += 1
-            print("\n" + "="*50)
-            print("ROUND", rounds)
-            print("="*50)
 
-            chooseRoute(userID)
-
-            print("\nEnd of Round", rounds)
-            print("-" * 50)
+            chooseRoute(userID, rounds)
 
             status = checkGameStatus(userID, rounds)
 
