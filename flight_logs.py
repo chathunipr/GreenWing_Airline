@@ -1,12 +1,17 @@
+# import the database connection function from config file
 from config import get_db_connection
+
+# import datetime to generate a unique flight id using time
 from datetime import datetime
 
+# function to process a completed flight
+# parameters: userID, routeid, profit earned from flight, and CO2 produced
 def processFlight(userID, routeid, profit, co2_per_flight):
 
     conn = get_db_connection()
     cur = conn.cursor()
 
-    # get latest user values
+    # get the latest financial and environmental values of the user
     cur.execute("""
         SELECT current_budget, total_profit, total_co2, reputation
         FROM users
@@ -45,3 +50,17 @@ def processFlight(userID, routeid, profit, co2_per_flight):
     # create flight id
     timestamp = datetime.now().strftime("%H%M%S")
     flight_id = str(userID) + "" + str(routeid) + "" + timestamp
+
+# save flight record
+    cur.execute("""
+                INSERT INTO flight_logs
+                    (flight_id, userid, routeid, profit_generated, co2_produced)
+                VALUES (%s, %s, %s, %s, %s)
+                """, (flight_id, userID, routeid, profit, co2_per_flight))
+
+    conn.commit()
+
+    cur.close()
+    conn.close()
+
+    return profit, new_budget, new_total_co2, new_reputation
