@@ -60,3 +60,21 @@ def chooseRoute(userID):
         passengers = int(passengers or 0)
         co2_per_flight = float(co2_per_flight or 0)
         ticket_price = float(ticket_price or 0)
+
+        distance = abs(latitude_deg * longitude_deg)
+
+        # fixed rates
+        c02Rate = 0.05
+        fuelRate = 8
+
+        # calculate fuel and CO2
+        fuel_cost = distance * fuelRate
+        co2_per_flight = distance * c02Rate
+
+        # calculate revenue and profit
+        revenue = passengers * ticket_price
+        profit = revenue - fuel_cost - airport_fee
+
+        # fetch home airport
+        cur.execute("SELECT home_airport FROM users WHERE userid = %s", (userID,))
+        home_airport = cur.fetchone()[0]
