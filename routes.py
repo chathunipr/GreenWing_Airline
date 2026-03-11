@@ -78,3 +78,18 @@ def chooseRoute(userID):
         # fetch home airport
         cur.execute("SELECT home_airport FROM users WHERE userid = %s", (userID,))
         home_airport = cur.fetchone()[0]
+
+        print("\nRoute Details")
+        print("-" * 40)
+        print(f"Route: {home_airport.split('. ')[1]} ---> {name}")
+        print()
+        print("Location:", location)
+        print("Distance:", round(distance, 2), "km")
+        print("Fuel Cost:", round(fuel_cost, 2))
+        print("Airport Fee:", round(airport_fee, 2))
+        print("Passenger Demand:", passengers)
+        print("Ticket Price:", ticket_price)
+        print()
+        print("Estimated CO2 Emission:", round(co2_per_flight, 2))
+        print("Estimated Revenue:", round(revenue, 2))
+        print("Estimated Profit:", round(profit, 2))
