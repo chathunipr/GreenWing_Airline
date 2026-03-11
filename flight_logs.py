@@ -33,7 +33,7 @@ def processFlight(userID, routeid, profit, co2_per_flight):
     new_total_co2 = total_co2 + co2_per_flight
 
     # calculate reputation loss from pollution
-    reputation_loss = co2_per_flight * 0.25
+    reputation_loss = co2_per_flight * 0.15
     new_reputation = reputation - reputation_loss
 
     # if reputation value gets (-); assign to zero (0)
