@@ -1,5 +1,11 @@
 from config import get_db_connection
+from game_logic import checkGameStatus
+from invesments import investGreenTech
 from users import getUserName, chooseHomeAirport, createUser
+from routes import chooseRoute
+from viewStatus import viewCompanyDetails
+
+
 def displayIntro():
     print("="*60)
     print("🌿 WELCOME TO GREENWING AIRLINES: ECO-TYCOON 🌿")
@@ -133,16 +139,26 @@ def mainMenu(userID):
             print("ROUND", rounds)
             print("="*50)
 
-            print("Print the routes")
+            chooseRoute(userID)
 
             print("\nEnd of Round", rounds)
-            print("-"*50)
+            print("-" * 50)
+
+            status = checkGameStatus(userID, rounds)
+
+            if status == "win":
+                print("\nCONGRATULATIONS! YOU WON THE GAME! You have built a profitable and a sustainable airline")
+                break
+
+            if status == "lose":
+                print("\nGAME OVER! Your company failed environmental regulations.")
+                break
 
         elif choice == "2":
-            print("Print the 2 option")
+            investGreenTech(userID)
 
         elif choice == "3":
-            print("Print the 3 option")
+            viewCompanyDetails(userID)
 
         elif choice == "4":
             print("\nReturning to instructions page...\n")
