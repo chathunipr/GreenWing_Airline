@@ -113,3 +113,11 @@ def chooseRoute(userID):
             conn.close()
             continue
 
+        profit, new_budget, new_total_co2, new_reputation = processFlight(
+            userID,
+            routeid,
+            profit,
+            co2_per_flight
+        )
+
+
